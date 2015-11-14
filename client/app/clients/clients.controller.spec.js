@@ -1,28 +1,27 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: ClientsCtrl', function () {
 
-  // load the controller's module
   beforeEach(module('clientsApp'));
 
-  var MainCtrl,
-      scope,
-      $httpBackend;
+  var ClientsCtrl,
+      clientsFactory;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/things')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
-
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+  beforeEach(inject(function ($controller, _clientsFactory_) {
+    clientsFactory = _clientsFactory_;
+    spyOn(clientsFactory, 'fetchClients');
+    ClientsCtrl = $controller('ClientsCtrl', {
+      clientsFactory: clientsFactory
     });
   }));
 
-  it('should attach a list of things to the scope', function () {
-    $httpBackend.flush();
-    expect(scope.awesomeThings.length).toBe(4);
+  it('should fetch the clients list on creation', function () {
+    expect(clientsFactory.fetchClients).toHaveBeenCalled();
+  });
+
+  it('should get client details with correct id', function () {
+    spyOn(clientsFactory, 'getDetails');
+    ClientsCtrl.goToDetails(1);
+    expect(clientsFactory.getDetails).toHaveBeenCalledWith(1);
   });
 });

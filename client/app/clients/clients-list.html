@@ -1,0 +1,24 @@
+<div ng-controller="ClientsCtrl as vm">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Documento</th>
+        <th>Tipo de plan</th>
+        <th>Fecha de afiliación</th>
+        <th>Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="client in vm.clients">
+        <td>{{client.name}}</td>
+        <td>{{client.document}}</td>
+        <td>{{client.planType}}</td>
+        <td>{{client.enrollmentDate | date: "dd/MM/yyyy"}}</td>
+        <td>
+          <a ng-href="/clients/{{client.id}}">details</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

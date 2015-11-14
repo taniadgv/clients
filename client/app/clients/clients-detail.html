@@ -1,0 +1,32 @@
+<div ng-controller="ClientDetailCtrl as vm">
+  <div ng-if="vm.data.clientDetails">
+    <div class="row">
+      <div class="col-md-4">Cliente</div>
+      <div class="col-md-8">{{vm.data.clientDetails.name}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Documento</div>
+      <div class="col-md-8">{{vm.data.clientDetails.document}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Fecha de Afiliación</div>
+      <div class="col-md-8">{{vm.data.clientDetails.enrollmentDate}}</div>
+    </div>
+    <h3>Cambios de contrato</h3>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in vm.data.clientDetails.history">
+        <td>{{item.date | date: "dd/MM/yyyy"}}</td>
+        <td>{{item.changeType}}</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <p ng-if="vm.data.errorMessage" class="text-danger">{{vm.data.errorMessage}}</p>
+</div>

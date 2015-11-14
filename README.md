@@ -1,10 +1,17 @@
 # clients
 
-Run npm install
-Run bower install
+Running the App
+---------------
 
-To run the server:
-grunt serve
+To setup the app run:
 
-To run the tests:
-grunt tests
+    npm install
+    bower install
+
+To run the application use:
+
+    grunt serve
+
+To run the tests use:
+
+    grunt test
